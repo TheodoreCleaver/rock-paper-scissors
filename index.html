@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let playerScore = 0;
+        let computerScore = 0;
+        let roundNumber = 0;
+
+    /* use random number to generate computer choice, then return choice as a weapon */
+
+        function getComputerChoice() {
+           let randomChoice = Math.floor(Math.random() * 3);
+           return randomChoice;
+        }
+
+        function computerChoice() {
+            if (getComputerChoice() === 0) {
+                return "rock";
+            } else if (getComputerChoice() === 1) {
+                return "paper"
+            } else {
+                return "scissors"
+            }
+        }
+         /* Call a function to get players choice via prompt */
+        function getPlayerChoice() {
+            let playerChoice = prompt("Rock, Paper, or Scissors? Choose your weapon!");
+            return playerChoice.toLowerCase();
+            
+        }
+       
+        const playerWeapon = getPlayerChoice();
+        const computerWeapon = computerChoice();
+      /* Call a function to compare the to inputs and determine a winner. Return message indicating win or loss. */
+       function playRound (playerWeapon , computerWeapon ) {
+        if (playerWeapon ===  computerWeapon) {
+            return  "It is a tie! Try Again!";
+            console.log(message);
+        } else if (playerWeapon === "rock" && computerWeapon === "scissors") {
+            return  "You Win! Rock beats Scissors"
+        } else if (playerWeapon === "rock" && computerWeapon === "paper") {
+            return "You lose. Paper beats Rock."
+        } else if (playerWeapon === "paper" && computerWeapon === "rock") {
+            return "You win! Paper beats Rock!"
+        } else if (playerWeapon === "paper" && computerWeapon === "scissors") {
+            return "You lose. Scissors beats Paper."
+        } else if (playerWeapon === "scissors" && computerWeapon === "rock") {
+            return "You lose. Rock beats Scissors"
+        } else if (playerWeapon === "scissors" && computerWeapon === "paper") {
+            return "You win! Scissors beats Paper"
+        }
+       }
+       
+
+    /* Start game*/
+
+       console.log(playRound(playerWeapon, computerWeapon));
+
+
+        
+
+
+
+        
+    </script>
+</body>
+</html>
