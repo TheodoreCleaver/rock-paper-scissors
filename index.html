@@ -8,9 +8,10 @@
 <body>
     <script>
 
-        let playerScore = 0;
-        let computerScore = 0;
-        let roundNumber = 0;
+        
+        var roundNumber = 1;
+        var playerWins = 0;
+        var computerWins = 0;
 
     /* use random number to generate computer choice, then return choice as a weapon */
 
@@ -35,36 +36,64 @@
             
         }
        
-        const playerWeapon = getPlayerChoice();
-        const computerWeapon = computerChoice();
+        
       /* Call a function to compare the to inputs and determine a winner. Return message indicating win or loss. */
-       function playRound (playerWeapon , computerWeapon ) {
+       function playRound () {
+        let playerWeapon = getPlayerChoice();
+        let computerWeapon = computerChoice();
+
         if (playerWeapon ===  computerWeapon) {
-            return  "It is a tie! Try Again!";
-            console.log(message);
+            console.log("It is a tie! Try Again!");
         } else if (playerWeapon === "rock" && computerWeapon === "scissors") {
-            return  "You Win! Rock beats Scissors"
+            playerWins = ++playerWins;
+            console.log("You Win! Rock beats Scissors"); 
         } else if (playerWeapon === "rock" && computerWeapon === "paper") {
-            return "You lose. Paper beats Rock."
+            computerWins = ++computerWins;
+            console.log("You lose. Paper beats Rock."); 
         } else if (playerWeapon === "paper" && computerWeapon === "rock") {
-            return "You win! Paper beats Rock!"
+            playerWins = ++playerWins;
+            console.log("You win! Paper beats Rock!");
         } else if (playerWeapon === "paper" && computerWeapon === "scissors") {
-            return "You lose. Scissors beats Paper."
+            computerWins = ++computerWins;
+            console.log("You lose. Scissors beats Paper.");
         } else if (playerWeapon === "scissors" && computerWeapon === "rock") {
-            return "You lose. Rock beats Scissors"
+            computerWins = ++computerWins;
+            console.log("You lose. Rock beats Scissors");
         } else if (playerWeapon === "scissors" && computerWeapon === "paper") {
-            return "You win! Scissors beats Paper"
+            playerWins = ++playerWins;
+            console.log("You win! Scissors beats Paper!");
         }
+        
        }
+       
+       
        
 
     /* Start game*/
+    /* Make game consist of 5 turns,and declare a winner*/
 
-       console.log(playRound(playerWeapon, computerWeapon));
 
-
+    function game() { 
+        playRound();
+        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
+        playRound();
+        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
+        playRound();
+        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
+        playRound();
+        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
+        playRound();
+        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
         
+        
+        
+       
+    }
 
+    game();
+
+    /* console.log(playRound(playerWeapon, computerWeapon));
+        console.log(playerWins); console.log(computerWins); console.log(roundNumber); */
 
 
         
