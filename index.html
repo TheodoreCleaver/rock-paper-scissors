@@ -6,12 +6,42 @@
     <title>Document</title>
 </head>
 <body>
+
+    <h1>Choose Your Weapon!</h1>
+
+
+    <button id="rock" name="rock" class="weaponButton">Rock</button>
+    <button id="paper" name="paper" class="weaponButton">Paper</button>
+    <button id="scissors" name="scissors" class="weaponButton">Scissors</button>
+
+    
+
+    <div id="results">
+
+    </div>
+
+    <div id="score">
+        <div>Wins: <span id="wins"> </span> </div>
+        <div>Round: <span id="round"></span></div>
+        <div>Loses: <span id="loses"></span> </div>
+    </div>
+
+    
     <script>
 
         
-        var roundNumber = 1;
-        var playerWins = 0;
-        var computerWins = 0;
+        let roundNumber = 0;
+        let playerWins = 0;
+        let computerWins = 0;
+
+        const wins = document.querySelector('#wins');
+        const round = document.querySelector('#round');
+        const loses = document.querySelector('#loses');
+
+
+        document.getElementById("wins").innerHTML = playerWins;
+        document.getElementById("round").innerHTML = roundNumber;
+        document.getElementById("loses").innerHTML = computerWins;
 
     /* use random number to generate computer choice, then return choice as a weapon */
 
@@ -33,72 +63,92 @@
         function getPlayerChoice() {
             let playerChoice = prompt("Rock, Paper, or Scissors? Choose your weapon!");
             return playerChoice.toLowerCase();
-            
+  
         }
+
+        let playerSelect;
+        const div = document.querySelector("#results");
+        const rockBtn = document.getElementById("rock");
+        rockBtn.addEventListener('click', () => {
+            playerSelect = "rock";
+            playRound();
+            document.getElementById("wins").innerHTML = playerWins;
+            document.getElementById("round").innerHTML = roundNumber;
+            document.getElementById("loses").innerHTML = computerWins;
+            if (playerWins >= 5 ) {
+                div.textContent = "You are the game winner! Refresh to play again.";   
+            }
+            if (computerWins >= 5 ) {
+                div.textContent = "You lose this game. Refresh to play again.";   
+            }
+        });
+        const paperBtn = document.getElementById("paper");
+        paperBtn.addEventListener('click', () => {
+            playerSelect = "paper";
+            playRound();
+            document.getElementById("wins").innerHTML = playerWins;
+            document.getElementById("round").innerHTML = roundNumber;
+            document.getElementById("loses").innerHTML = computerWins;
+            if (playerWins >= 5 ) {
+                div.textContent = "You are the game winner! Refresh to play again.";
+            }
+            if (computerWins >= 5 ) {
+                div.textContent = "You lose this game. Refresh to play again.";    
+            }
+        });
+        const scissorsBtn = document.getElementById("scissors");
+        scissorsBtn.addEventListener('click', () => {
+            playerSelect = "scissors";
+            playRound();
+            document.getElementById("wins").innerHTML = playerWins;
+            document.getElementById("round").innerHTML = roundNumber;
+            document.getElementById("loses").innerHTML = computerWins;
+            if (playerWins >= 5 ) {
+                div.textContent = "You are the game winner! Refresh to play again.";
+                
+            }
+            if (computerWins >= 5 ) {
+                div.textContent = "You lose this game. Refresh to play again.";
+                
+            }
+        });
        
         
       /* Call a function to compare the to inputs and determine a winner. Return message indicating win or loss. */
        function playRound () {
-        let playerWeapon = getPlayerChoice();
+        let playerWeapon = playerSelect;
         let computerWeapon = computerChoice();
 
         if (playerWeapon ===  computerWeapon) {
-            console.log("It is a tie! Try Again!");
+            div.textContent = "It is a tie! Try again.";
+            roundNumber = ++roundNumber;
         } else if (playerWeapon === "rock" && computerWeapon === "scissors") {
             playerWins = ++playerWins;
-            console.log("You Win! Rock beats Scissors"); 
+            roundNumber = ++roundNumber;
+            div.textContent = "You Win! Rock beats Scissors!";              
         } else if (playerWeapon === "rock" && computerWeapon === "paper") {
             computerWins = ++computerWins;
-            console.log("You lose. Paper beats Rock."); 
+            roundNumber = ++roundNumber;
+            div.textContent = "You lose. Paper beats Rock :("; 
         } else if (playerWeapon === "paper" && computerWeapon === "rock") {
             playerWins = ++playerWins;
-            console.log("You win! Paper beats Rock!");
+            roundNumber = ++roundNumber;
+            div.textContent = "You win! Paper beats Rock!";
         } else if (playerWeapon === "paper" && computerWeapon === "scissors") {
             computerWins = ++computerWins;
-            console.log("You lose. Scissors beats Paper.");
+            roundNumber = ++roundNumber;
+            div.textContent = "You lose. Scissors beats paper :( ";
         } else if (playerWeapon === "scissors" && computerWeapon === "rock") {
             computerWins = ++computerWins;
-            console.log("You lose. Rock beats Scissors");
+            roundNumber = ++roundNumber;
+            div.textContent = "You lose. Rock beats Scissors :( ";
         } else if (playerWeapon === "scissors" && computerWeapon === "paper") {
             playerWins = ++playerWins;
-            console.log("You win! Scissors beats Paper!");
-        }
-        
-        
+            roundNumber = ++roundNumber;
+            div.textContent = "You win! Scissors beats Paper!";
+        }  
        }
        
-       
-       
-
-    /* Start game*/
-    /* Make game consist of 5 turns,and declare a winner*/
-
-
-    function game() { 
-        playRound();
-        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
-        playRound();
-        roundNumber = ++roundNumber;
-        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
-        playRound();
-        roundNumber = ++roundNumber;
-        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
-        playRound();
-        roundNumber = ++roundNumber;
-        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
-        playRound();
-        roundNumber = ++roundNumber;
-        console.log("Wins " + playerWins); console.log("Loses " + computerWins); console.log("Round " + roundNumber);
-        
-        
-        
-       
-    }
-
-    game();
-
-    /* console.log(playRound(playerWeapon, computerWeapon));
-        console.log(playerWins); console.log(computerWins); console.log(roundNumber); */
 
 
         
